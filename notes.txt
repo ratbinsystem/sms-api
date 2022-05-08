@@ -1,7 +1,43 @@
-// git 
+## git 
 git init &&
 git add . &&
 git commit -m "first commit" &&
 git branch -M main &&
 git remote add origin https://github.com/ratbinsystem/sms-api.git &&
 git push -u origin main
+
+## Update 
+du -sh /var/cache/apt/archives &&
+sudo apt-get clean &&
+sudo apt update 
+
+## create user
+sudo adduser rahul &&
+usermod -aG sudo rahul
+## to run cmd withou password
+echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/dont-prompt-$USER-for-sudo-password
+
+## install node
+curl -sL https://deb.nodesource.com/setup_17.x -o /tmp/nodesource_setup.sh &&
+sudo bash /tmp/nodesource_setup.sh &&
+sudo apt install nodejs &&
+node -v &&
+npm -v
+
+## Firewall Setup
+sudo ufw enable &&
+sudo ufw allow http &&
+sudo ufw allow https &&
+sudo ufw allow ssh &&
+sudo ufw allow 8000/tcp
+
+## install pm2
+npm install pm2 -g
+pm2 start server.js
+## To make sure that PM2 restarts when our Droplet reboots, run the following command in your server’s terminal,
+pm2 startup ubuntu
+
+## run runner in backgraound
+sudo ./svc.sh install &&
+sudo ./svc.sh start
+

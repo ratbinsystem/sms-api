@@ -9,8 +9,8 @@
     "start": " ts-node-dev ./src/server.ts",
     "startProd": " ts-node ./src/server.ts",
     "seed": " ts-node ./src/utility/seeder.ts",
-    "startServer": "pm2 start ./src/dist/server.js",
-    "restartServer": "pm2 restart apiPm2"
+    "startServer1": "pm2 start ./src/dist/server.js",
+    "startServer": "pm2 restart smsApi"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +19,6 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.3.2"
-   
   },
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
