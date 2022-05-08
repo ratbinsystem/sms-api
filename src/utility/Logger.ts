@@ -14,7 +14,7 @@ class Logger {
       second: 'numeric'
     })
     this.log(time, url, method)
-    fileIO.writeLogToFile(`${time}, ${url}, ${method}`, next)
+    // fileIO.writeLogToFile(`${time}, ${url}, ${method}`, next)
     next()
   }
 }
