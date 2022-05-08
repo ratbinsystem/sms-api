@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import 'dotenv/config'
-const DB_PATH = process.env.DB_PATH || 'mongodb+srv://rahul:VK8FKHsI5xd38x8m@cluster0.zdsdh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const DB_PATH =
+  process.env.DB_PATH ||
+  'mongodb+srv://rahuladsps:Pagtj2052M@cluster0.u5i8u.mongodb.net/schoolManagementSystem?retryWrites=true&w=majority'
 import mongoose from 'mongoose'
 import Logger from './Logger'
 import { stringNumber } from './types'
