@@ -1,4 +1,4 @@
-VK8FKHsI5xd38x8m
+ip : http://146.190.8.115:8000/
 
 ## git 
 git init &&
@@ -35,9 +35,8 @@ sudo ufw allow 8000/tcp
 
 ## install pm2
 npm install pm2 -g
-pm2 start server.js
-## To make sure that PM2 restarts when our Droplet reboots, run the following command in your server’s terminal,
-pm2 startup ubuntu
+pm2 start fileLocation.js --name='anyName'
+
 
 ## run runner in backgraound
 sudo ./svc.sh install &&
