@@ -1,13 +1,9 @@
 import crypto from 'crypto'
 class Token {
-  createToken = () => {
-    return crypto.randomBytes(32).toString('hex')
-  }
+  createToken = () => crypto.randomBytes(32).toString('hex')
 
-  hashToken = (key: string) => {
-    const hashedToken = crypto.createHash('sha256').update(key).digest('hex')
-    return hashedToken
-  }
+  hashToken = (key: string) =>
+    crypto.createHash('sha256').update(key).digest('hex')
 }
 
 export default new Token()

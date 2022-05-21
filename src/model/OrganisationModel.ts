@@ -1,6 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
+import { _Iorganisation, IUserModal } from '../utility/interfaces'
 
-const Organisation = new mongoose.Schema(
+const OrganisationModal = new Schema<_Iorganisation>(
   {
     name: {
       type: String,
@@ -9,12 +10,15 @@ const Organisation = new mongoose.Schema(
     estd: Number,
     registration_number: String,
     affliation_number: String,
-    // organization_type: { type: mongoose.Schema.Types.ObjectId, ref: 'type' },
-    // contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'contact' }],
-    // addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'address' }],
-    // users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
-    description: String,
+    organization_type: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'typeModal'
+    },
+    contacts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'contactModal' }],
+    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'addressModal' }],
+    users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'userModal' }],
+    description: String
   },
   { timestamps: true }
 )
-export default mongoose.model('organisation', Organisation)
+export default model<_Iorganisation>('organisationModal', OrganisationModal)
