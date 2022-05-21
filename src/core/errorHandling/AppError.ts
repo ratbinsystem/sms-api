@@ -10,12 +10,14 @@ export default class AppError extends Error {
   constructor(message: string, statusCode: number) {
     super(message)
     this.statusCode = statusCode
-    this.message = super.message
+    this.message = message
     type ObjectKey = keyof typeof responseCode
     const myVar = this.statusCode as ObjectKey
     this.status = responseCode[myVar]
     ;(this.isOperational = true),
       Error.captureStackTrace(this, this.constructor)
+
+      console.log('error cons', message)
   }
 }
 
@@ -28,15 +30,16 @@ const sendErrorDev = (err: AppError, res: Response) => {
   })
 }
 
-const sendErrorProd = (err: AppError | undefined, res: Response) => {
-  if (err) {
+const sendErrorProd = (err: AppError|undefined, res: Response) => {
+  console.log('in error prod')
+  if(err){
     if (err.isOperational) {
       res.status(err.statusCode).json({
         status: err.status,
         message: err.message
       })
     } else {
-      // console.error("ERROR", err);
+      console.error("ERROR", err);
       res.status(500).json({
         status: 'error',
         message: 'Something went wrong'
