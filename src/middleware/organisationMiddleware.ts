@@ -1,5 +1,6 @@
 import { NextFunction, Response } from 'express'
 import organizationController from '../controller/organizationController'
+import AppError from '../core/errorHandling/AppError'
 import OrganisationModel from '../model/OrganisationModel'
 import { _Iorganisation, _ImyRequest } from '../utility/interfaces'
 
@@ -16,9 +17,11 @@ class OrganisationMiddelware {
       )
       if (getorganisation) {
         req.organisation = getorganisation
+        next()
       }
+      next(new AppError('Invalid Organisation id.', 401))
     }
-    next()
+    next(new AppError('Unauthorized access', 401))
   }
 }
 
