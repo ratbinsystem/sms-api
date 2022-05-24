@@ -1,11 +1,13 @@
 import mongoose, { Schema, model, Types } from 'mongoose'
 import { baseSchema, name } from './../utility/interfaces'
+import { IPinModal } from './PinModal'
+import { ITypeModal } from './TypeModel'
 export interface IAddressModal extends baseSchema, name {
   address_line_1: string
   address_line_2?: string
   lankmark?: string
-  pin?: Types.ObjectId
-  address_type?: Types.ObjectId
+  pin?: any
+  address_type?: any,
 }
 const AddressModal = new Schema<IAddressModal>(
   {

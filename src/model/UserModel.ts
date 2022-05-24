@@ -2,8 +2,8 @@ import mongoose, { Schema, model, Types } from 'mongoose'
 import { baseSchema, name, email } from '../utility/interfaces'
 export interface IUserModal extends baseSchema, name, email {
   avatar?: string
-  contacts: Types.ObjectId[]
-  addresses: Types.ObjectId[]
+  contacts: any[]
+  addresses: any[]
 }
 
 

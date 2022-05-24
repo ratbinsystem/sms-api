@@ -6,9 +6,9 @@ export interface IOrganisation extends name {
   registration_number: string
   affliation_number: string
   contacts?: any[]
-  addresses?: []
-  users?: []
-  organization_type?: Types.ObjectId
+  addresses?: any[]
+  users?: any[]
+  organization_type?: any
   description: string
   createdAt?: Date
   updatedAt?: Date
