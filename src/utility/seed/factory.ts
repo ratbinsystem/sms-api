@@ -97,8 +97,7 @@ export const typeFactory = (): ITypeModal[] => [
   { l1: 'Contact', l2: 'Facebook', l3: '', l4: '', description: '' },
   { l1: 'Contact', l2: 'Twitter', l3: '', l4: '', description: '' },
   { l1: 'Contact', l2: 'Website', l3: '', l4: '', description: '' },
-  { l1: 'Contact', l2: 'otherActive', l3: '', l4: '', description: '' },
-  { l1: 'Contact', l2: 'otherInactive', l3: '', l4: '', description: '' },
+  { l1: 'Contact', l2: '', l3: '', l4: '', description: '' },
 
   // address
   { l1: 'Address', l2: 'Home', l3: '', l4: 'permanent', description: '' },
