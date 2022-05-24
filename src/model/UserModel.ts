@@ -1,5 +1,11 @@
-import mongoose, { Schema, model } from 'mongoose'
-import { IUserModal } from '../utility/interfaces'
+import mongoose, { Schema, model, Types } from 'mongoose'
+import { baseSchema, name, email } from '../utility/interfaces'
+export interface IUserModal extends baseSchema, name, email {
+  avatar?: string
+  contacts: Types.ObjectId[]
+  addresses: Types.ObjectId[]
+}
+
 
 const UserModal = new Schema<IUserModal>(
   {
@@ -16,4 +22,4 @@ const UserModal = new Schema<IUserModal>(
   },
   { timestamps: true }
 )
-export default model<IUserModal>('userModal', UserModal)
+export default model<IUserModal>('user', UserModal)

@@ -1,6 +1,6 @@
 import { NextFunction, Response, Errback } from 'express'
 import responseCode from '../../utility/constant/responseCode'
-import { _ImyRequest } from '../../utility/interfaces.js'
+import { IMyRequest } from '../../utility/interfaces.js'
 export default class AppError extends Error {
   status: string
   statusCode: number
@@ -17,7 +17,7 @@ export default class AppError extends Error {
     ;(this.isOperational = true),
       Error.captureStackTrace(this, this.constructor)
 
-      console.log('error cons', message)
+    console.log('error cons', message)
   }
 }
 
@@ -30,16 +30,16 @@ const sendErrorDev = (err: AppError, res: Response) => {
   })
 }
 
-const sendErrorProd = (err: AppError|undefined, res: Response) => {
+const sendErrorProd = (err: AppError | undefined, res: Response) => {
   console.log('in error prod')
-  if(err){
+  if (err) {
     if (err.isOperational) {
       res.status(err.statusCode).json({
         status: err.status,
         message: err.message
       })
     } else {
-      console.error("ERROR", err);
+      console.error('ERROR', err)
       res.status(500).json({
         status: 'error',
         message: 'Something went wrong'
@@ -69,7 +69,7 @@ const handleTokenExpiredError = () =>
 
 export const errorHandler = (
   err: AppError,
-  req: _ImyRequest,
+  req: IMyRequest,
   res: Response,
   next: NextFunction
 ) => {

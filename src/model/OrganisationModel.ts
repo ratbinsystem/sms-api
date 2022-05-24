@@ -1,7 +1,22 @@
-import mongoose, { Schema, model } from 'mongoose'
-import { _Iorganisation, IUserModal } from '../utility/interfaces'
+import mongoose, { Schema, model, Types } from 'mongoose'
+import {baseSchema, name} from './../utility/interfaces'
+export interface IOrganisation extends name {
+  name: string
+  estd: number
+  registration_number: string
+  affliation_number: string
+  contacts?: any[]
+  addresses?: []
+  users?: []
+  organization_type?: Types.ObjectId
+  description: string
+  createdAt?: Date
+  updatedAt?: Date
+  _id?: Types.ObjectId
+  __v?: number
+}
 
-const OrganisationModal = new Schema<_Iorganisation>(
+const OrganisationModal = new Schema<IOrganisation>(
   {
     name: {
       type: String,
@@ -21,4 +36,4 @@ const OrganisationModal = new Schema<_Iorganisation>(
   },
   { timestamps: true }
 )
-export default model<_Iorganisation>('organisationModal', OrganisationModal)
+export default model<IOrganisation>('organisation', OrganisationModal)

@@ -1,17 +1,23 @@
-import mongoose, { Schema, model } from 'mongoose'
-import { IAddressModal } from '../utility/interfaces'
-
+import mongoose, { Schema, model, Types } from 'mongoose'
+import { baseSchema, name } from './../utility/interfaces'
+export interface IAddressModal extends baseSchema, name {
+  address_line_1: string
+  address_line_2?: string
+  lankmark?: string
+  pin?: Types.ObjectId
+  address_type?: Types.ObjectId
+}
 const AddressModal = new Schema<IAddressModal>(
   {
     name: {
       type: String,
       default: 'self'
     },
-    address_line_1: String,
-    address_line_2: {
+    address_line_1: {
       type: String,
-      required: false
+      required: [true, 'Address line 1 is required.']
     },
+    address_line_2: String,
     lankmark: String,
     pin: { type: mongoose.Schema.Types.ObjectId, ref: 'pinModal' },
     address_type: { type: mongoose.Schema.Types.ObjectId, ref: 'typeModal' },
@@ -19,8 +25,11 @@ const AddressModal = new Schema<IAddressModal>(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'organisationModal'
     },
-    description: String
+    description: {
+      type: String,
+      default: 'This is address'
+    }
   },
   { timestamps: true }
 )
-export default model<IAddressModal>('addressModal', AddressModal)
+export default model<IAddressModal>('address', AddressModal)

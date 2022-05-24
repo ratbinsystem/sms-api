@@ -19,9 +19,10 @@ export const catchAsync = (
     fn(req, res, next).catch(next)
   }
 }
-const connectDb = async (DB_URL: string) => await mongoose.connect(DB_URL)
+export const connectDb = async (DB_URL: string = DB_PATH) =>
+  await mongoose.connect(DB_URL)
 
-export default (app:Express , PORT: string_number, DB_URL = DB_PATH) => {
+export default (app: Express, PORT: string_number, DB_URL = DB_PATH) => {
   app.listen(PORT, () => {
     Logger.log(`app started @ ${PORT}`, 'Connecting to database ...')
     connectDb(DB_URL)
@@ -32,4 +33,9 @@ export default (app:Express , PORT: string_number, DB_URL = DB_PATH) => {
 
 export const getProperty = (property: string, arr: any[]) => {
   return arr.map((a) => a[property])
+}
+
+export const dropDatabase = async (DB_URL: string = DB_PATH) => {
+  const conn = mongoose.createConnection(DB_PATH)
+  await conn.dropDatabase()
 }

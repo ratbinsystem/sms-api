@@ -1,9 +1,18 @@
 import { Schema, model } from 'mongoose'
-import { ITypeModal } from '../utility/interfaces'
+export interface ITypeModal {
+  l1: string
+  l2?: string
+  l3?: string
+  l4?: string
+  description: string
+}
 
 const TypeModal = new Schema<ITypeModal>(
   {
-    l1: String,
+    l1: {
+      type: String,
+      required: true
+    },
     l2: String,
     l3: String,
     l4: String,
@@ -11,4 +20,4 @@ const TypeModal = new Schema<ITypeModal>(
   },
   { timestamps: true }
 )
-export default model<ITypeModal>('typeModal', TypeModal)
+export default model<ITypeModal>('type', TypeModal)

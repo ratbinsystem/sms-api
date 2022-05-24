@@ -1,12 +1,13 @@
 import express from 'express'
 import 'dotenv/config'
 import cors from 'cors'
-import organizationRouter from './router/organization'
+import organizationRouter from './router/organizationRouter'
+import typeRouter from './router/typeRouter'
+import userRouter from './router/userRouter'
 const PORT = process.env.PORT || 8000
 import logger from './utility/Logger'
-import createServer from './utility/common'
+import startServer from './utility/common'
 import AppError, { errorHandler } from './core/errorHandling/AppError'
-import { resolveOrganisation } from './core/middleware/utility'
 
 process.on('uncaughtException', (err: any) => {
   console.log(err.name, err.message, err)
@@ -19,14 +20,15 @@ app.use(express.json())
 app.use(cors())
 app.use(logger.requestLogger)
 
-app.use(resolveOrganisation)
 app.use('/organisations', organizationRouter)
+app.use('/types', typeRouter)
+app.use('/users', userRouter)
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cant find ${req.originalUrl} on this server`, 404))
 })
 app.use(errorHandler)
-createServer(app, PORT)
+startServer(app, PORT)
 process.on('unhandledRejection', (err: any) => {
   console.log(err.name, err.message, err)
   console.log('Unhandled Rejection. Shutting Down...')

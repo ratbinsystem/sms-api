@@ -8,7 +8,7 @@
     "build": "tsc -p .",
     "start": " ts-node-dev ./src/server.ts",
     "startProd": " ts-node ./src/server.ts",
-    "seed": " ts-node ./src/utility/seeder.ts",
+    "seed": " ts-node ./src/utility/seed/seeder.ts",
     "startServer1": "pm2 start ./src/dist/server.js",
     "startServer": "pm2 restart smsApi"
   },

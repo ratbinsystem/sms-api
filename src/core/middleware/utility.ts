@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import OrganisationModel from '../../model/OrganisationModel'
 import { catchAsync } from '../../utility/common'
 import responseCode from '../../utility/constant/responseCode'
-import { _ImyRequest } from '../../utility/interfaces'
+import { IMyRequest } from '../../utility/interfaces'
 import AppError from '../errorHandling/AppError'
 
 export const unless = (path: string[], middleware: any) => {
@@ -19,7 +19,7 @@ export const unless = (path: string[], middleware: any) => {
   }
 }
 export const resolveOrganisation = catchAsync(
-  async (req: _ImyRequest, res: Response, next: NextFunction) => {
+  async (req: IMyRequest, res: Response, next: NextFunction) => {
     const ORGANISATION_ID = req.headers.organisation_id
     if (!ORGANISATION_ID) {
       next()

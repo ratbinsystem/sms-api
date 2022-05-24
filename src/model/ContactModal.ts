@@ -1,6 +1,10 @@
-import mongoose, { Schema, model } from 'mongoose'
-import { IContactModal } from '../utility/interfaces'
-
+import mongoose, { Schema, model, Types } from 'mongoose'
+import { baseSchema, name } from '../utility/interfaces'
+import { ITypeModal } from './TypeModel'
+export interface IContactModal extends baseSchema, name {
+  contact: string
+  contact_type: Types.ObjectId | ITypeModal | null
+}
 const ContactModal = new Schema<IContactModal>(
   {
     name: {
@@ -9,16 +13,13 @@ const ContactModal = new Schema<IContactModal>(
     },
     contact: {
       type: String,
-      required: [true, 'Name is required']
+      required: [true, 'Contact is required']
     },
     contact_type: { type: mongoose.Schema.Types.ObjectId, ref: 'type' },
-    isActive: {
-      type: Boolean,
-      default: true
-    },
-    description: String
+    description: String,
+    organisation : { type: mongoose.Schema.Types.ObjectId, ref: 'organisation' }
   },
 
   { timestamps: true }
 )
-export default model<IContactModal>('contactModal', ContactModal)
+export default model<IContactModal>('contact', ContactModal)
